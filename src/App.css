@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  padding: 50px 60px;
+  min-height: 100vh;
+  background-color: #223a5f;
+}
+.title-score-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Bree Serif';
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  padding: 20px 35px;
+}
+
+.titles-container {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 500;
+}
+.score-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1px;
+  background-color: #ffffff;
+  padding: 5px 15px;
+  border-radius: 6px;
+}
+.score-heading {
+  font-size: 25px;
+}
+
+.value {
+  font-size: 45px;
+  margin-top: 20px;
+  font-family: 'Roboto';
+  font-weight: 600;
+}
+
+.un-ordered-list-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 100px;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  text-align: end;
+}
+.rules-button {
+  padding: 5px 10px;
+  font-size: 15px;
+  font-family: 'Bree Serif';
+  cursor: pointer;
+  outline: none;
+}
+.rules-container {
+  background-color: #ffffff;
+  padding: 30px;
+}
+
+.game-rules-image {
+  margin-top: 10px;
+  height: 450px;
+  width: 600px;
+}
+.close-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.close-button {
+  border: 1px solid #000;
+  border-radius: 25px;
+  padding: 5px 6px;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.you-image {
+  height: 150px;
+  width: 150px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.persons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1px;
+  color: #ffffff;
+}
+.result-retry-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
