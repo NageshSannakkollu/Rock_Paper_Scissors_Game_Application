@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Popup from 'reactjs-popup'
 import {RiCloseLine} from 'react-icons/ri'
 import ChoiceItem from './components/ChoiceItem'
+import GameResultView from './components/GameResultView'
 
 import './App.css'
 
@@ -49,69 +50,30 @@ class App extends Component {
     this.setState({youList: matchedList})
   }
 
-  clickOnRetry = () => {
+  clickedOnRetryButton = () => {
     this.setState({clickOnGameButton: false})
   }
 
   renderRockScissorsPaperGame = () => {
     const {opponentList, youList} = this.state
-    const yourId = youList.id
-    const opponentId = opponentList.id
-    let gameResult = ' '
-    if (yourId === 'Rock' && opponentId === 'Paper') {
-      gameResult = 'YOU LOSE'
-    } else if (yourId === 'Paper' && opponentId === 'Rock') {
-      gameResult = 'YOU WON'
-    } else if (yourId === 'Scissors' && opponentId === 'Rock') {
-      gameResult = 'YOU LOSE'
-    } else if (yourId === 'Scissors' && opponentId === 'Paper') {
-      gameResult = 'YOU WON'
-    } else if (yourId === 'Rock' && opponentId === 'Scissors') {
-      gameResult = 'YOU WON'
-    } else if (yourId === 'Paper' && opponentId === 'Scissors') {
-      gameResult = 'YOU LOSE'
-    } else {
-      gameResult = 'IT IS DRAW'
-    }
-
+    let gameResult: ''
     return (
       <div>
-        <div className="game-container">
-          <div className="persons-container">
-            <h3>YOU</h3>
-            <img
-              src={youList.imageUrl}
-              alt="your choice"
-              className="you-image"
-            />
-          </div>
-          <div className="persons-container">
-            <h3>OPPONENT</h3>
-            <img
-              src={opponentList.imageUrl}
-              alt="opponent choice"
-              className="you-image"
-            />
-          </div>
-          <div className="result-retry-button-container">
-            <p>{gameResult}</p>
-            <button
-              type="button"
-              onClick={this.clickOnRetry}
-              className="retry-button"
-            >
-              PLAY AGAIN
-            </button>
-          </div>
-        </div>
+        {youList.map(eachYou => (
+          <GameResultView
+            youDetails={eachYou}
+            key={eachYou.id}
+            clickedOnRetryButton={this.clickedOnRetryButton}
+            opponentList={opponentList}
+            gameResult={gameResult}
+          />
+        ))}
       </div>
     )
   }
 
   render() {
-    const {initialScore, clickOnGameButton, youList} = this.state
-    console.log(clickOnGameButton)
-    console.log(youList)
+    const {initialScore, clickOnGameButton} = this.state
 
     return (
       <div className="app-container">
