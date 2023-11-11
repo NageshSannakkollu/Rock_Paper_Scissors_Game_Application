@@ -54,9 +54,28 @@ class App extends Component {
     this.setState({clickOnGameButton: false})
   }
 
-  renderRockScissorsPaperGame = () => {
+   renderRockScissorsPaperGame = () => {
     const {opponentList, youList} = this.state
-    let gameResult: ''
+    const youId = youList.map(you => you.id)
+    const opponentId = opponentList.id
+    let finalGameResult = ''
+
+    if (youId[0] === 'ROCK' && opponentId === 'PAPER') {
+      finalGameResult = 'YOU LOSE'
+    } else if (youId[0] === 'PAPER' && opponentId === 'ROCK') {
+      finalGameResult = 'YOU WON'
+    } else if (youId[0] === 'SCISSORS' && opponentId === 'ROCK') {
+      finalGameResult = 'YOU LOSE'
+    } else if (youId[0] === 'SCISSORS' && opponentId === 'PAPER') {
+      finalGameResult = 'YOU WON'
+    } else if (youId[0] === 'ROCK' && opponentId === 'SCISSORS') {
+      finalGameResult = 'YOU WON'
+    } else if (youId[0] === 'PAPER' && opponentId === 'SCISSORS') {
+      finalGameResult = 'YOU LOSE'
+    } else {
+      finalGameResult = 'IT IS DRAW'
+    }
+
     return (
       <div>
         {youList.map(eachYou => (
@@ -65,7 +84,7 @@ class App extends Component {
             key={eachYou.id}
             clickedOnRetryButton={this.clickedOnRetryButton}
             opponentList={opponentList}
-            gameResult={gameResult}
+            finalGameResult={finalGameResult}
           />
         ))}
       </div>
