@@ -31,6 +31,7 @@ class App extends Component {
     clickOnGameButton: false,
     youList: [],
     opponentList: [],
+    gameResult: '',
   }
 
   clickOnButton = id => {
@@ -47,17 +48,11 @@ class App extends Component {
       }
       return null
     })
+
     this.setState({youList: matchedList})
-  }
 
-  clickedOnRetryButton = () => {
-    this.setState({clickOnGameButton: false})
-  }
-
-   renderRockScissorsPaperGame = () => {
-    const {opponentList, youList} = this.state
-    const youId = youList.map(you => you.id)
-    const opponentId = opponentList.id
+    const youId = matchedList.map(you => you.id)
+    const opponentId = oppositeList.id
     let finalGameResult = ''
 
     if (youId[0] === 'ROCK' && opponentId === 'PAPER') {
@@ -75,24 +70,28 @@ class App extends Component {
     } else {
       finalGameResult = 'IT IS DRAW'
     }
+    this.setState({gameResult: finalGameResult})
+    if (finalGameResult === 'YOU WON') {
+      this.setState(prevState => ({initialScore: prevState.initialScore + 1}))
+    } else if (finalGameResult === 'YOU LOSE') {
+      this.setState(prevState => ({initialScore: prevState.initialScore - 1}))
+    } else {
+      this.setState(prevState => ({initialScore: prevState.initialScore}))
+    }
+  }
 
-    return (
-      <div>
-        {youList.map(eachYou => (
-          <GameResultView
-            youDetails={eachYou}
-            key={eachYou.id}
-            clickedOnRetryButton={this.clickedOnRetryButton}
-            opponentList={opponentList}
-            finalGameResult={finalGameResult}
-          />
-        ))}
-      </div>
-    )
+  clickedOnRetryButton = () => {
+    this.setState({clickOnGameButton: false})
   }
 
   render() {
-    const {initialScore, clickOnGameButton} = this.state
+    const {
+      initialScore,
+      clickOnGameButton,
+      youList,
+      opponentList,
+      gameResult,
+    } = this.state
 
     return (
       <div className="app-container">
@@ -106,11 +105,23 @@ class App extends Component {
           </div>
           <div className="score-container">
             <p className="score-heading">Score</p>
-            <p className="value">{initialScore}</p>
+            <p className="value" style={{fontFamily: 'Roboto'}}>
+              {initialScore}
+            </p>
           </div>
         </div>
         {clickOnGameButton ? (
-          this.renderRockScissorsPaperGame()
+          <div>
+            {youList.map(eachYou => (
+              <GameResultView
+                youDetails={eachYou}
+                key={eachYou.id}
+                opponentList={opponentList}
+                clickedOnRetryButton={this.clickedOnRetryButton}
+                gameResult={gameResult}
+              />
+            ))}
+          </div>
         ) : (
           <ul className="un-ordered-list-items">
             {choicesList.map(eachChoice => (

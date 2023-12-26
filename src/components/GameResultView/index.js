@@ -1,19 +1,16 @@
 const GameResultView = props => {
-  const {
-    youDetails,
-    opponentList,
-    clickedOnRetryButton,
-    finalGameResult,
-  } = props
-  const {imageUrl} = youDetails
+  const {youDetails, opponentList, clickedOnRetryButton, gameResult} = props
+  const {imageUrl, id} = youDetails
 
   const clickOnRetry = () => {
     clickedOnRetryButton()
   }
 
+  console.log(`gameResult:${gameResult}`)
+
   return (
     <div>
-      <div className="game-container">
+      <div className="game-container" key={id}>
         <div className="persons-container">
           <h3>YOU</h3>
           <img src={imageUrl} alt="your choice" className="you-image" />
@@ -27,7 +24,7 @@ const GameResultView = props => {
           />
         </div>
         <div className="result-retry-button-container">
-          <p>{finalGameResult}</p>
+          <p>{gameResult}</p>
           <button type="button" onClick={clickOnRetry} className="retry-button">
             PLAY AGAIN
           </button>

@@ -15,6 +15,7 @@ body {
   padding: 50px 60px;
   min-height: 100vh;
   background-color: #223a5f;
+  font-family: 'Roboto';
 }
 .title-score-container {
   display: flex;
@@ -40,6 +41,7 @@ body {
   background-color: #ffffff;
   padding: 5px 15px;
   border-radius: 6px;
+  font-family: 'Roboto';
 }
 .score-heading {
   font-size: 25px;
@@ -48,7 +50,6 @@ body {
 .value {
   font-size: 45px;
   margin-top: 20px;
-  font-family: 'Roboto';
   font-weight: 600;
 }
 
